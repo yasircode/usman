@@ -18,7 +18,7 @@ const LicensePortal = () => {
 
     // Agar number match kar gaya, to ye data show hoga
     setUserData({
-      name: "yasir Hussain",
+      name: "Usman Ali",
       father: "Bashir Ahmed",
       licenceNo: "PJ-25-41350",
       dob: "01-01-2002",
