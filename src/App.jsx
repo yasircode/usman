@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import myProfilePhoto from '/newmy.jpg'; // Ensure this path is correct
+import myProfilePhoto from '/newmy.jpg'; 
 
 const LicensePortal = () => {
   const [cnic, setCnic] = useState('');
@@ -7,7 +7,6 @@ const LicensePortal = () => {
   const [userData, setUserData] = useState(null);
 
   const handleVerify = () => {
-    // Sirf is specific CNIC ko allow karne ke liye condition
     const allowedCNIC = "3450255147843";
 
     if (cnic !== allowedCNIC) {
@@ -16,7 +15,6 @@ const LicensePortal = () => {
       return;
     }
 
-    // Agar number match kar gaya, to ye data show hoga
     setUserData({
       name: "Usman Ali",
       father: "Bashir Ahmed",
@@ -36,6 +34,12 @@ const LicensePortal = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 font-sans">
+      
+      {/* 1. TOP RED DISCLAIMER (Google Review ke liye zaroori) */}
+      <div className="bg-red-600 text-white text-center py-2 text-xs font-bold uppercase tracking-widest">
+        ⚠️ Demo Project: This is NOT an official government website. Created for portfolio purposes only.
+      </div>
+
       {/* Navbar */}
       <nav className="bg-[#006633] text-white p-4 shadow-lg border-b-4 border-yellow-500">
         <div className="container mx-auto flex justify-between items-center">
@@ -59,20 +63,27 @@ const LicensePortal = () => {
       {/* Search Section */}
       <div className="container mx-auto mt-10 p-6 max-w-2xl bg-white rounded-xl shadow-md text-center">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">License Verification</h2>
-        <div className="flex flex-col md:flex-row gap-2">
-          <input 
-            type="text" 
-            placeholder="Enter CNIC (e.g. Valid Cnic)" 
-            className="flex-1 p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-[#006633]"
-            value={cnic}
-            onChange={(e) => setCnic(e.target.value)}
-          />
-          <button 
-            onClick={handleVerify}
-            className="bg-[#006633] hover:bg-[#004d26] text-white px-8 py-3 rounded-lg font-bold transition duration-300"
-          >
-            VERIFY
-          </button>
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-col md:flex-row gap-2">
+            <input 
+              type="text" 
+              placeholder="Enter CNIC (e.g. 3450255147843)" 
+              className="flex-1 p-3 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-[#006633]"
+              value={cnic}
+              onChange={(e) => setCnic(e.target.value)}
+            />
+            <button 
+              onClick={handleVerify}
+              className="bg-[#006633] hover:bg-[#004d26] text-white px-8 py-3 rounded-lg font-bold transition duration-300"
+            >
+              VERIFY
+            </button>
+          </div>
+          
+          {/* 2. INPUT FIELD NOTICE */}
+          <p className="text-[11px] text-red-500 font-medium">
+            * Educational Demo: Do not enter sensitive personal information.
+          </p>
         </div>
       </div>
 
@@ -80,15 +91,12 @@ const LicensePortal = () => {
       {showCard && userData && (
         <div className="container mx-auto mt-10 max-w-3xl animate-in fade-in duration-500 pb-10">
           <div className="bg-white border border-gray-300 rounded-2xl overflow-hidden shadow-2xl">
-            {/* Card Header */}
             <div className="bg-[#006633] text-white p-4 text-center">
               <h3 className="text-xl font-bold tracking-tighter">GOVERNMENT OF THE PUNJAB</h3>
               <p className="text-xs">DRIVING LICENCE</p>
             </div>
 
-            {/* Card Body */}
             <div className="flex flex-col md:flex-row p-6 gap-8">
-              {/* Photo Area */}
               <div className="flex flex-col items-center">
                 <img 
                   src={userData.photo} 
@@ -100,7 +108,6 @@ const LicensePortal = () => {
                 </div>
               </div>
 
-              {/* Data Grid */}
               <div className="grid grid-cols-2 gap-y-4 gap-x-8 flex-1">
                 <DetailItem label="FULL NAME" value={userData.name} />
                 <DetailItem label="FATHER NAME" value={userData.father} />
@@ -112,7 +119,6 @@ const LicensePortal = () => {
                 <DetailItem label="ISSUE DATE" value={userData.issueDate} />
                 <DetailItem label="EXPIRY DATE" value={userData.expiryDate} />
                 
-                {/* Vehicles Allowed Section */}
                 <div className="col-span-2 mt-2">
                     <p className="text-[10px] text-gray-500 font-bold uppercase mb-1">Allowed Vehicles</p>
                     <div className="flex gap-2">
@@ -131,7 +137,9 @@ const LicensePortal = () => {
             </div>
             
             <div className="bg-gray-50 p-3 border-t text-center">
-              <p className="text-[10px] text-gray-400">This is a computer generated document from Punjab Traffic Police.</p>
+              <p className="text-[10px] text-gray-400 italic">
+                Sample Output - Part of a Web Development Portfolio Project
+              </p>
             </div>
           </div>
         </div>
@@ -158,7 +166,11 @@ const LicensePortal = () => {
               </div>
               <p className="text-sm md:text-base leading-relaxed max-w-lg opacity-95">
                 The Driving License Information Management System (DLIMS) is an integrated component 
-                of the Government of Punjab's <strong>Dastak</strong>...
+                of the Government of Punjab's <strong>Dastak</strong>. 
+                <br /><br />
+                <span className="bg-white/20 p-1 rounded text-xs">
+                  *This site is a portfolio demonstration by <strong>Yasir Hussain</strong>.
+                </span>
               </p>
             </div>
 
@@ -177,7 +189,7 @@ const LicensePortal = () => {
             </div>
           </div>
           <div className="text-center mt-12 pt-6 border-t border-white/10 text-[10px] opacity-60 uppercase tracking-widest">
-              © 2026 Government of Punjab | DLIMS Portal
+              © 2026 Developed by Yasir Hussain | Educational Portfolio Project
           </div>
         </div>
       </div>
